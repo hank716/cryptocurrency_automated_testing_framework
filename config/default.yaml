@@ -1,0 +1,17 @@
+api:
+  base_url: https://sandbox-api.coinmarketcap.com
+  timeout: 30
+  retry_count: 3
+  api_key: your_api_key_here  # Please replace with your API key
+
+web:
+  base_url: https://coinmarketcap.com
+  timeout: 10
+  headless: true  # Headless mode, set to false to view browser operations
+  screenshot_dir: reports/screenshots
+
+performance:
+  host: https://sandbox-api.coinmarketcap.com
+  users: 10  # Simulated users
+  spawn_rate: 1  # New users per second
+  run_time: 1m  # Run time
