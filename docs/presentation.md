@@ -38,12 +38,6 @@ backgroundColor: #fff
 
 ---
 
-# 框架架構
-
-![框架架構](architecture_diagram.png)
-
----
-
 # API 測試模組
 
 - **核心功能**
@@ -191,12 +185,6 @@ jobs:
 
 ---
 
-# 測試報告展示
-
-![測試報告](test_report.png)
-
----
-
 # 專案特色與優勢
 
 - **全面覆蓋**：API、Web UI 和性能測試
@@ -233,7 +221,6 @@ jobs:
 # 總結
 
 - 全面的自動化測試框架
-- 符合 CoinMarketCap 職位要求的技術能力
 - 展示了測試設計、編程和 DevOps 技能
 - 可立即應用於實際項目
 
