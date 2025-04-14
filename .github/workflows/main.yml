@@ -28,18 +28,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # 設定 miniconda，建立 (或使用) 一個統一的 conda 環境
+      # 使用 setup-miniconda 建立並啟用 conda 環境，請注意這裡使用 activate-environment 與 create-env: true
       - name: Set up Miniconda
         uses: conda-incubator/setup-miniconda@v3
         with:
-          python-version: "3.10" 
-          activate-environment: "crypto_testing_env" 
-          create-env: true 
-          auto-activate-base: false 
-          auto-update-conda: false 
-          remove-profiles: true 
-          conda-solver: libmamba 
-          clean-patched-environment-file: true 
+          python-version: "3.10"
+          activate-environment: "crypto_testing_env"
+          create-env: true
+          auto-activate-base: false
+          auto-update-conda: false
+          remove-profiles: true
+          conda-solver: libmamba
+          clean-patched-environment-file: true
           run-post: true
 
       - name: Install code-quality dependencies
@@ -56,10 +56,7 @@ jobs:
       - name: Run pylint
         shell: bash -l {0}
         run: |
-          # 根據專案目錄調整要檢查的路徑
-          conda run -n crypto_testing_env pylint \
-            --disable=C0111,C0103,C0303,W0621,R0913,R0914 \
-            api_tests web_tests performance_tests utils || true
+          conda run -n crypto_testing_env pylint --disable=C0111,C0103,C0303,W0621,R0913,R0914 api_tests web_tests performance_tests utils || true
 
       - name: Check formatting with black
         shell: bash -l {0}
@@ -80,9 +77,10 @@ jobs:
       - name: Set up Miniconda
         uses: conda-incubator/setup-miniconda@v3
         with:
-          environment-name: crypto_testing_env
+          python-version: "3.10"
+          activate-environment: "crypto_testing_env"
+          create-env: true
           auto-activate-base: false
-          python-version: 3.10
 
       - name: Install dependencies
         shell: bash -l {0}
@@ -117,9 +115,10 @@ jobs:
       - name: Set up Miniconda
         uses: conda-incubator/setup-miniconda@v3
         with:
-          environment-name: crypto_testing_env
+          python-version: "3.10"
+          activate-environment: "crypto_testing_env"
+          create-env: true
           auto-activate-base: false
-          python-version: 3.10
 
       - name: Install Chrome
         run: |
@@ -127,9 +126,6 @@ jobs:
           echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
           sudo apt-get update
           sudo apt-get install -y google-chrome-stable
-        # 若需要 chromedriver，可加：
-        #   sudo apt-get install -y chromium-chromedriver
-        # 或改用 webdriver-manager (requirements.txt 裡包含 webdriver-manager)
 
       - name: Install Python dependencies
         shell: bash -l {0}
@@ -164,9 +160,10 @@ jobs:
       - name: Set up Miniconda
         uses: conda-incubator/setup-miniconda@v3
         with:
-          environment-name: crypto_testing_env
+          python-version: "3.10"
+          activate-environment: "crypto_testing_env"
+          create-env: true
           auto-activate-base: false
-          python-version: 3.10
 
       - name: Install dependencies
         shell: bash -l {0}
@@ -202,21 +199,18 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y jq mailutils
-
       - name: Download API test artifacts
         uses: actions/download-artifact@v4
         with:
           name: api-test-report
           path: reports/api
         continue-on-error: true
-
       - name: Download Web test artifacts
         uses: actions/download-artifact@v4
         with:
           name: web-test-report
           path: reports/web
         continue-on-error: true
-
       - name: Send notification
         run: |
           chmod +x ./utils/notify.sh
