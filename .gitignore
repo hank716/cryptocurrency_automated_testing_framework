@@ -1,0 +1,40 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Conda & Virtualenv
+.env
+.venv/
+env/
+venv/
+*.conda
+*.egg-info/
+*.egg
+conda-meta/
+*.lock
+
+# Jupyter notebook checkpoint
+.ipynb_checkpoints
+
+# VSCode
+.vscode/
+
+# Reports
+reports/
+htmlcov/
+coverage.xml
+*.cover
+*.log
+
+# Test artifacts
+*.html
+*.png
+screenshots/
+*.db
+
+# OS 系統檔
+.DS_Store
+Thumbs.db

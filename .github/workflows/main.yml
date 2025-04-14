@@ -95,6 +95,39 @@ jobs:
           path: reports/web/
         if: always()
 
+  performance-tests:
+    name: Performance Tests
+    runs-on: ubuntu-latest
+    needs: code-quality
+    if: ${{ github.event.inputs.test_type == 'all' || github.event.inputs.test_type == 'performance' || github.event.inputs.test_type == '' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Miniconda
+        uses: conda-incubator/setup-miniconda@v3
+        with:
+          activate-environment: crypto_testing_env
+          python-version: 3.10
+          auto-activate-base: false
+
+      - name: Install dependencies
+        shell: bash -l {0}
+        run: |
+          pip install -r requirements.txt || true
+
+      - name: Run performance tests with Locust
+        shell: bash -l {0}
+        run: |
+          mkdir -p reports/performance
+          locust -f performance_tests/test_locustfile.py --headless -u 10 -r 2 -t1m --csv=reports/performance/perf_result || true
+
+      - name: Upload Performance Test Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: performance-test-report
+          path: reports/performance/
+        if: always()
+      
   notify:
     name: Notify Test Results
     runs-on: ubuntu-latest

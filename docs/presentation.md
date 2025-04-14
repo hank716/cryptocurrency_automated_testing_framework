@@ -6,7 +6,7 @@ backgroundColor: #fff
 ---
 
 # 加密貨幣自動化測試框架
-## CoinMarketCap Automation QA Engineer 面試專案
+## Automation QA Engineer 專案
 
 ---
 
@@ -19,22 +19,6 @@ backgroundColor: #fff
   - 性能測試模組
   - CI/CD 整合
 - **技術棧**：Python, pytest, Selenium, Locust, GitHub Actions
-
----
-
-# 為什麼選擇這個專案？
-
-- **完全符合職位要求**
-  - 自動化測試框架開發
-  - API 測試和 Web UI 測試
-  - 性能測試和壓力測試
-  - CI/CD 整合
-
-- **展示全面技能**
-  - 編程能力
-  - 測試設計
-  - 架構設計
-  - DevOps 實踐
 
 ---
 
