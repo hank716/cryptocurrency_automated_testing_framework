@@ -82,7 +82,7 @@ crypto_qa_framework/
 ├── reports/                 # Test reports
 ├── .github/workflows/       # GitHub Actions configuration
 │   └── main.yml             # CI/CD workflow
-├── run_tests.sh             # Test execution script
+├── run_tests.py             # Test execution script
 ├── requirements.txt         # Dependencies list
 └── README.md                # Project documentation
 ```
